@@ -14,11 +14,11 @@ public class Employee {
     }
 
     public int getEmpId() {
-        return EmpId;
+        return empId;
     }
 
     public void setEmpId(int empId) {
-        EmpId = empId;
+        empId = empId;
     }
 
     public String getName() {
