@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -31,5 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee getEmployeeById(String id) {
         return employeeList.stream().filter(e->e.getEmployeeId().equalsIgnoreCase(id))
                 .findFirst().orElseThrow(()->new RuntimeException("Employee not found"));
+    }
+
+    @Override
+    public String deleteEmployeeById(String id) {
+        Optional<Employee> employee=employeeList.stream().filter(e->e.getEmployeeId().equals(id)).findFirst();
+        employeeList.remove(employee);
+        return "deleted successfully ..!";
     }
 }
