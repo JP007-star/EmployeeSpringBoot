@@ -3,21 +3,25 @@ package com.example.EmployeeSpringBoot.controller;
 import com.example.EmployeeSpringBoot.model.Employee;
 import com.example.EmployeeSpringBoot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/employees")
-public class MyController   {
+@RequestMapping("/v2/employees")
+public class EmployeeV2Controller {
 
     @Autowired
+    @Qualifier("employeeV2ServiceImpl")
     EmployeeService employeeService;
 
+
     @PostMapping
-    public Employee addEmployee(@RequestBody  Employee employee){
+    public Employee addEmployee(@RequestBody Employee employee){
         return employeeService.addEmployee(employee);
     }
+
 
     @GetMapping
     public List<Employee> getAllEmployee(){
@@ -34,6 +38,11 @@ public class MyController   {
     public String deleteByEmployeeId(@PathVariable String id){
         return employeeService.deleteEmployeeById(id);
     }
+
+
+
+
+
 
 
 
